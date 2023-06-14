@@ -1,6 +1,7 @@
 package GUI;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -40,12 +41,17 @@ public class MyCanvas extends JPanel{
 	public static List<Composition> coms = new ArrayList<Composition>();
 	public List<BaseObject> selectedObj = new ArrayList<BaseObject>();
 	public selectArea area = new selectArea();
+	int width;
+	int height;
 	 
-    MyCanvas () {
+    MyCanvas (int width, int height) {
     	/*panel.setBounds(75,0,625,525); 
     	panel.setBackground(Color.white);
     	panel.setLayout(null);*/
-    	setBounds(75,0,625,525); 
+    	
+    	this.width = width;
+    	this.height = height;
+    	setBounds(75,0,width,height); 
     	setBackground(Color.white);
     	setLayout(null);
     }
@@ -54,50 +60,6 @@ public class MyCanvas extends JPanel{
     	return this;
     }
     
-    public void setMode(String m) {
-    	switch(m) {
-    	  case "SELECT":
-    		removeMouseListener(mode);
-    		removeMouseMotionListener(mode);
-    		mode = new Select(this);
-			addMouseListener(mode);
-			addMouseMotionListener(mode);
-			break;
-    	  case "CLASS OBJECT":
-    		removeMouseListener(mode);
-    		removeMouseMotionListener(mode);
-    		mode = new DrawClass(this);
-    		addMouseListener(mode);
-    		break;
-    	  case "USE CASE":
-    		removeMouseListener(mode);
-    		removeMouseMotionListener(mode);
-    		mode = new DrawUseCase(this);
-      		addMouseListener(mode);
-      		break;
-    	  case "ASSOCIATION":
-    		removeMouseListener(mode);
-    		removeMouseMotionListener(mode);
-    		mode = new DrawAssociation(this);
-    		addMouseListener(mode);
-    		addMouseMotionListener(mode);
-    		break;
-    	  case "GENERAL":
-      		removeMouseListener(mode);
-      		removeMouseMotionListener(mode);
-      		mode = new DrawGeneral(this);
-      		addMouseListener(mode);
-      		addMouseMotionListener(mode);
-      		break;
-    	  case "COMPISITION":
-    		removeMouseListener(mode);
-    		removeMouseMotionListener(mode);
-    		mode = new DrawComposition(this);
-    		addMouseListener(mode);
-    		addMouseMotionListener(mode);
-    		break;
-    	} 		
-    }
     
     public void paintComponent(Graphics g) {
 		super.paintComponent(g);

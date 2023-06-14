@@ -51,16 +51,16 @@ public abstract class BaseLineObject extends Shape {
 		endPort = true;
 		
 		if (start != null && end != null) {
-			startTopPort = start.getTopPort();
-			startLeftPort = start.getLeftPort();
-			startRightPort = start.getRightPort();
-			startBottomPort = start.getBottomPort();
+			startTopPort = start.getPort().getTopPort();
+			startLeftPort = start.getPort().getLeftPort();
+			startRightPort = start.getPort().getRightPort();
+			startBottomPort = start.getPort().getBottomPort();
 
-			endTopPort = end.getTopPort();
-			endLeftPort = end.getLeftPort();
-			endRightPort = end.getRightPort();
-			endBottomPort = end.getBottomPort();
-
+			endTopPort = end.getPort().getTopPort();
+			endLeftPort = end.getPort().getLeftPort();
+			endRightPort = end.getPort().getRightPort();
+			endBottomPort = end.getPort().getBottomPort();
+ 
 			
 			if(isInsideRange(x ,y ,startTopPort)){
 				setStartPoint(startTopPort[0], startTopPort[1]);
@@ -103,15 +103,15 @@ public abstract class BaseLineObject extends Shape {
 	}
 	
 	public void updatePosition() {
-		startTopPort = start.getTopPort();
-		startLeftPort = start.getLeftPort();
-		startRightPort = start.getRightPort();
-		startBottomPort = start.getBottomPort();
+		startTopPort = start.getPort().getTopPort();
+		startLeftPort = start.getPort().getLeftPort();
+		startRightPort = start.getPort().getRightPort();
+		startBottomPort = start.getPort().getBottomPort();
 
-		endTopPort = end.getTopPort();
-		endLeftPort = end.getLeftPort();
-		endRightPort = end.getRightPort();
-		endBottomPort = end.getBottomPort();
+		endTopPort = end.getPort().getTopPort();
+		endLeftPort = end.getPort().getLeftPort();
+		endRightPort = end.getPort().getRightPort();
+		endBottomPort = end.getPort().getBottomPort();
 		
 		switch(startP) {
 		case "TopPort":

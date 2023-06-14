@@ -30,7 +30,7 @@ public class Composition extends BaseObject{
 			System.out.println("contents "+contents);
             if(contents.contains(obj)){
             	com = coms.get(i);
-            	break;
+            	break; 
             }
 		}
         return com;
@@ -53,6 +53,7 @@ public class Composition extends BaseObject{
             	if(findCom)break;
             }
 		}
+		
 		/*
         for (Composition com: coms){ 
             List<BaseObject> contents = com.getLeafsContents();

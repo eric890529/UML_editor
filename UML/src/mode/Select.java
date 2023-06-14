@@ -13,8 +13,9 @@ import Object.Composition;
 import Object.selectArea;
 
 public class Select extends Mode{
-	BaseObject selecctedObj;
-	static List<BaseObject> objList;
+	BaseObject selecctedObj;//當下點到的物件
+	static List<BaseObject> objList;//點到的位置，所有obj都回傳
+	static List<BaseObject> selectedObjList;
 	List<BaseObject> comObj;
 	protected boolean isDraging = false;
 	int lastX;
@@ -42,6 +43,7 @@ public class Select extends Mode{
 		
 		if(objList.size()>0) {
 			selecctedObj = objList.get(objList.size()-1);//最後生成的
+			//selecctedObj.getPort().setPortPosition();
 			comObj = Composition.selectCompositionGivenObj(selecctedObj, true, canvas.coms);
 			//selecctedObj.setSelected(true);
 			//canvas.selectedObj.add(selecctedObj);
@@ -68,8 +70,8 @@ public class Select extends Mode{
 		x = e.getX();
 		y = e.getY();
 		
-		area = new selectArea(x,y);
-		
+		this.area = new selectArea(x,y);
+		System.out.println("area111 "+ area);
 		lastX = x;
 		lastY = y;
 		
@@ -80,7 +82,7 @@ public class Select extends Mode{
 		objList = BaseObject.getInsideObjs(x, y, canvas.objList);
 		comObj = new ArrayList<BaseObject>();
 
-		List<BaseObject> tempConObj = new ArrayList<BaseObject>();
+		//List<BaseObject> tempConObj = new ArrayList<BaseObject>();
 		
 		
 		if(objList.size()>0) {
@@ -96,7 +98,7 @@ public class Select extends Mode{
 			selecctedObj = null;
 		}
 		
-		for(BaseObject obj : comObj) {//確保group的物件都有被選到
+		for(BaseObject obj : comObj) { //確保group的物件都有被選到
 			if(!objList.contains(obj)) {
 				objList.add(obj);
 			}
@@ -108,17 +110,17 @@ public class Select extends Mode{
     public void mouseReleased(MouseEvent e) {
 		
 		canvas.area = null;
-		
+		 
 		System.out.println("released");
 		endX = e.getX();
 		endY = e.getY();
         if(isDraging) {
-        	int translateX = endX - x;
-            int translateY = endY - y;
+        	/*int translateX = endX - x;
+            int translateY = endY - y;*/
         	if(objList.size()>0) {
         		for(BaseObject obj: canvas.selectedObj) {
         			obj.setStartPoint(obj.getStartX()  , obj.getStartY() );
-        			obj.setPortPosition();
+        			obj.getPort().setPortPosition();
         		}
         		//selecctedObj = objList.get(objList.size()-1);
 				//selecctedObj.setStartPoint(selecctedObj.getStartX() + translateX, selecctedObj.getStartY() + translateY);
@@ -132,8 +134,9 @@ public class Select extends Mode{
 			List<BaseObject> tempConObj = new ArrayList<BaseObject>();
 			for(BaseObject obj : objList) {
 				obj.setSelected(true);
-				comObj = Composition.selectCompositionGivenObj(obj, true, canvas.coms);
-				tempConObj.addAll(comObj);
+				
+				comObj = Composition.selectCompositionGivenObj(obj, true, canvas.coms); //拉框選取物件的時候，不要選到group
+				//tempConObj.addAll(comObj);
 				
 				/*if(!canvas.selectedObj.contains(obj)) {
 					canvas.selectedObj.add(obj);
@@ -141,11 +144,13 @@ public class Select extends Mode{
 				
 			}
 			
+			/*
 			for(BaseObject obj : tempConObj) {//確保group的物件都有被選到
 				if(!objList.contains(obj)) {
 					objList.add(obj);
 				}
-        	}
+        	}*/
+			
 		}
         
 
@@ -169,7 +174,7 @@ public class Select extends Mode{
             int translateY = tempY - lastY;
             for(BaseObject obj: canvas.selectedObj) {
     			obj.setStartPoint(obj.getStartX() + translateX, obj.getStartY() + translateY);
-    			obj.setPortPosition();
+    			obj.getPort().setPortPosition();
     			
     		}
             
@@ -180,6 +185,7 @@ public class Select extends Mode{
     		lastX = tempX;
     		lastY = tempY;
         }else {
+        	System.out.println("area222 "+ area);
         	area.setEndPoint(e.getX(), e.getY());
     		canvas.area = area;
     		canvas.repaint();

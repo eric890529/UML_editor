@@ -9,47 +9,23 @@ import javax.swing.JPanel;
 
 public abstract class  BaseObject extends Shape{
 	String objName;
+
+	Ports port = new Ports(this);
 	
-	int leftPortX,leftPortY;
-	int bottomPortX,bottomPortY;
-	int rightPortX, rightPortY;
-	int topPortX, topPortY;
+	BaseObject(){
+		
+		
+	}
 	
 	public void paintPort(Graphics g) {
-		setPortPosition();
+		port.setPortPosition();
 		if(isSelected) {
-	        g.fillRect(leftPortX,  leftPortY, portWidth, portWidth);
-	        g.fillRect(bottomPortX, bottomPortY, portWidth, portWidth);
-	        g.fillRect(rightPortX, rightPortY, portWidth, portWidth);
-	        g.fillRect(topPortX, topPortY, portWidth, portWidth);
+			port.paintPort(g);
 		}
 	}
 	
-	public void setPortPosition() {
-		leftPortX = x - portWidth;
-		leftPortY = y + height / 2 - portWidth / 2 ;
-		bottomPortX = x + width / 2 - portWidth / 2;
-		bottomPortY = y + height;
-		rightPortX = x + width;
-		rightPortY = y + height / 2 - portWidth / 2;
-		topPortX = x + width / 2 - portWidth / 2; 
-		topPortY = y - portWidth;
-	}
-	
-	public int [] getLeftPort() {
-		return new int[] {leftPortX + portWidth, leftPortY + portWidth/2};
-	}
-	
-	public int [] getRightPort() {
-		return new int[] {rightPortX , rightPortY + portWidth/2};
-	}
-	
-	public int [] getBottomPort() {
-		return new int[] {bottomPortX + portWidth/2, bottomPortY};
-	}
-	
-	public int [] getTopPort() {
-		return new int[] {topPortX + portWidth/2, topPortY + portWidth};
+	public Ports getPort() {
+		return port;
 	}
 	
 	public boolean isInside(int x, int y){

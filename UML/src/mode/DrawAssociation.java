@@ -19,3 +19,4 @@ public class DrawAssociation extends DrawLine {
 		return new AssociationLine(startObj, endObj, x, y, x2, y2);
 	}
 }
+ 

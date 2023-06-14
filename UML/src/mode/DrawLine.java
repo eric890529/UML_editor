@@ -22,7 +22,7 @@ public abstract class DrawLine extends Mode{
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		objList = BaseObject.getInsideObjs(e.getX(), e.getY(), canvas.objList);
+		//objList = BaseObject.getInsideObjs(e.getX(), e.getY(), canvas.objList); //不確定要不要先刪掉
 		
 		for(BaseObject obj : canvas.objList) {
 			obj.setSelected(false);
@@ -69,11 +69,10 @@ public abstract class DrawLine extends Mode{
     			}
     		}
         }
-		
 		isDraged = false;
 		canvas.repaint();
     }
-	
+	 
 	/*
 	@Override
     public void mouseDragged(MouseEvent e) {
