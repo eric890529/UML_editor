@@ -31,7 +31,7 @@ public class Ports {
 		objY = object.y;
 		objWidth = object.width;
 		objHeight = object.height;
-		System.out.println(objX+" "+ objY);
+		//System.out.println(objX+" "+ objY);
 		
 		leftPortX = objX - portWidth;
 		leftPortY = objY + objHeight / 2 - portWidth / 2 ;

@@ -15,9 +15,14 @@ public class GroupObject implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("Select.objListj size "+ Select.objList.size());
+		System.out.println("Select.objListj size "+ Select.objList.size()); //canvas.selected
 		Composition coms = new Composition(Select.objList);
 		canvas.coms.add(coms);
+		
+		
+		canvas.objList.removeAll(coms.getLeafsContents());
+		
+		canvas.objList.add(coms);
 	}
 
 }

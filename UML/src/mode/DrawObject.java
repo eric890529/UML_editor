@@ -28,6 +28,7 @@ public abstract class DrawObject extends Mode{
 		
 		BaseObject obj = newObject();
 		obj.setStartPoint(e.getX(), e.getY());
+		obj.setEndPoint(e.getX()+obj.getWidth(), e.getY()+obj.getHeight());
 		canvas.objList.add(obj);
 		canvas.repaint();
 	}

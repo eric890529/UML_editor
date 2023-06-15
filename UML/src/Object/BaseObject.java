@@ -79,4 +79,18 @@ public abstract class  BaseObject extends Shape{
 		objName = name;
 	}
 	
+	public static boolean checkGroupObj( List<BaseObject> selected, List<BaseObject> comList){
+		
+		for(BaseObject obj : selected) {
+			if(!comList.contains(obj)) {
+				return false;
+			}
+		}
+		
+		if(selected.size() != comList.size()) {
+			return false;
+		}
+		return true;
+    }
+	
 }

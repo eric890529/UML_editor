@@ -19,6 +19,11 @@ public class UnGroupObject implements ActionListener{
 		System.out.println("Select.objListj size "+ Select.objList.size());
 		if(canvas.coms.size()>0 ){
 			Composition com = Composition.findUngroupComposition(Select.objList.get(0), canvas.coms);
+			
+			
+			canvas.objList.addAll(com.getLeafsContents());
+			
+			
 			canvas.coms.remove(com);
 		}
 	}

@@ -95,6 +95,7 @@ public class ButtonPanel  implements ActionListener{
 		panel.add(select); panel.add(association);  
 		panel.add(general);  panel.add(composition);  panel.add(objectClass);  panel.add(usecase);
 		*/
+		
 	    int i = 0;
 		for(JButton btn : buttons) {
 			panel.add(btn);
@@ -146,6 +147,7 @@ public class ButtonPanel  implements ActionListener{
 				break;
 			}
 		}
+		
 		for(int i = 0 ; i < buttons.length ; i++) {
 			if(i != index) {
 				buttons[i].setBackground(Color.white);

@@ -40,10 +40,13 @@ public class Select extends Mode{
 		
 		objList = BaseObject.getInsideObjs(e.getX(), e.getY(), canvas.objList);
 		comObj = new ArrayList<BaseObject>();
-		
+		System.out.println("objList.size() "+objList.size());
 		if(objList.size()>0) {
 			selecctedObj = objList.get(objList.size()-1);//最後生成的
 			//selecctedObj.getPort().setPortPosition();
+			selecctedObj.setSelected(true);
+			canvas.selectedObj.add(selecctedObj);
+			/*
 			comObj = Composition.selectCompositionGivenObj(selecctedObj, true, canvas.coms);
 			//selecctedObj.setSelected(true);
 			//canvas.selectedObj.add(selecctedObj);
@@ -55,7 +58,7 @@ public class Select extends Mode{
 				if(!objList.contains(obj)) {
 					objList.add(obj);
 				}
-        	}
+        	}*/
 		}
 		canvas.repaint();
 	}
@@ -71,7 +74,7 @@ public class Select extends Mode{
 		y = e.getY();
 		
 		this.area = new selectArea(x,y);
-		System.out.println("area111 "+ area);
+		//System.out.println("area111 "+ area);
 		lastX = x;
 		lastY = y;
 		
@@ -88,21 +91,29 @@ public class Select extends Mode{
 		if(objList.size()>0) {
 			selecctedObj = objList.get(objList.size()-1);//最後生成的
 			//selecctedObj.setSelected(true);
-			comObj = Composition.selectCompositionGivenObj(selecctedObj, true, canvas.coms);
-			
+			//comObj = Composition.selectCompositionGivenObj(selecctedObj, true, canvas.coms);
+			canvas.selectedObj.add(selecctedObj);
 			isDraging = true;
+			selecctedObj.setSelected(true);
+			if(selecctedObj instanceof Composition) {
+
+				System.out.println("selecctedObj coms" );
+			}
+			/*
 			for(BaseObject obj : comObj) {
 				canvas.selectedObj.add(obj);
         	}
+        	*/
 		}else {
 			selecctedObj = null;
 		}
-		
+		/*
 		for(BaseObject obj : comObj) { //確保group的物件都有被選到
 			if(!objList.contains(obj)) {
 				objList.add(obj);
 			}
     	}
+    	*/
 		canvas.repaint();
 	}
 	
@@ -154,12 +165,13 @@ public class Select extends Mode{
 		}
         
 
-		System.out.println("canvas.selectedObj size"+ canvas.selectedObj.size());
+		/*System.out.println("canvas.selectedObj size"+ canvas.selectedObj.size());
 
 		System.out.println("objList  size"+ objList.size());
 		
 
 		System.out.println("canvas.coms " + canvas.coms.size());
+		*/
 		isDraging = false;
 		canvas.repaint();
     }
@@ -185,7 +197,7 @@ public class Select extends Mode{
     		lastX = tempX;
     		lastY = tempY;
         }else {
-        	System.out.println("area222 "+ area);
+        	//System.out.println("area222 "+ area);
         	area.setEndPoint(e.getX(), e.getY());
     		canvas.area = area;
     		canvas.repaint();

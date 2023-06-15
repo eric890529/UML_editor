@@ -20,6 +20,7 @@ import Object.BaseLineObject;
 import Object.BaseObject;
 import Object.ClassObject;
 import Object.Composition;
+import Object.Shape;
 import Object.UseCaseObject;
 import Object.selectArea;
 import mode.DrawAssociation;
@@ -47,7 +48,7 @@ public class MyCanvas extends JPanel{
     MyCanvas (int width, int height) {
     	/*panel.setBounds(75,0,625,525); 
     	panel.setBackground(Color.white);
-    	panel.setLayout(null);*/
+    	panel.setLayout(null);*/ 
     	
     	this.width = width;
     	this.height = height;
@@ -68,11 +69,11 @@ public class MyCanvas extends JPanel{
 			area.draw(g);
 		}
 		
-		for(BaseObject obj : objList) {
+		for(Shape obj : objList) {
 			obj.draw(g);
 		}
 		
-		for(BaseLineObject line : lineList) {
+		for(Shape line : lineList) {
 			line.draw(g);
 		}
 		
