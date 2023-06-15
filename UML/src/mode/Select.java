@@ -136,7 +136,7 @@ public class Select extends Mode{
 				obj.setSelected(true);
 				
 				comObj = Composition.selectCompositionGivenObj(obj, true, canvas.coms); //拉框選取物件的時候，不要選到group
-				//tempConObj.addAll(comObj);
+				tempConObj.addAll(comObj);
 				
 				/*if(!canvas.selectedObj.contains(obj)) {
 					canvas.selectedObj.add(obj);
@@ -144,12 +144,12 @@ public class Select extends Mode{
 				
 			}
 			
-			/*
+			
 			for(BaseObject obj : tempConObj) {//確保group的物件都有被選到
 				if(!objList.contains(obj)) {
 					objList.add(obj);
 				}
-        	}*/
+        	}
 			
 		}
         
